@@ -45,11 +45,12 @@ public class Registro extends AppCompatActivity {
                 Toast.makeText(getApplicationContext(), "Registro en base de datos exitoso",
                         Toast.LENGTH_LONG).show();
 
-                Intent i = new Intent(getApplicationContext(),MainActivity.class);
-
-                startActivity(i);
+                Intent intentRegistro = new Intent(Registro.this, MainActivity.class);
+                Registro.this.startActivity(intentRegistro);
 
             }
+
+
         });
     }
 }
