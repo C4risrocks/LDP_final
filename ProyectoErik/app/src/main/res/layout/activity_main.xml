@@ -14,18 +14,19 @@
         android:src="@drawable/usuario"
         android:layout_gravity="center"/>
     <EditText
+        android:id="@+id/mainUsuario"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Nombre de Usuario"
         android:inputType="text"/>
     <EditText
-        android:id="@+id/tv_contrasena"
+        android:id="@+id/mainContrasena"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Contraseña"
         android:inputType="textPassword"/>
     <Button
-        android:id="@+id/btn_entrar"
+        android:id="@+id/btn_EntrarM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="entrar"

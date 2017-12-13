@@ -2,8 +2,11 @@ package OpenHelper;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.sql.SQLException;
 
 /**
  * Created by christianmorenomarin on 12/12/17.
@@ -12,7 +15,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class SQLite_OpenHelper extends SQLiteOpenHelper{
 
     final String query = "create table usuarios (_ID integer primary key autoincrement, " +
-            "Nombres text, Apellidos text, Direccion text, Telefono text, Nombre_Usuario, Password);";
+            "Nombres text, Apellidos text, Direccion text, Telefono text, Nombre_Usuario text, Password text);";
 
 
     public SQLite_OpenHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
@@ -56,6 +59,19 @@ public class SQLite_OpenHelper extends SQLiteOpenHelper{
         valores.put("Nombre_Usuario",nom_usuario);
         valores.put("Password", password);
         this.getWritableDatabase().insert("usuarios", null, valores);
+    }
+
+    //Metodo para validar usuario
+
+    public Cursor ConsultaPassUsuario (String usuario, String password) throws SQLException{
+
+        Cursor mcursor = null;
+
+        mcursor = this.getReadableDatabase().query("usuarios", new String[]{"_ID",
+                "Nombres" , "Apellidos" , "Direccion" , "Telefono" , "Nombre_Usuario" , "Password"}, "Nombre_Usuario like '"
+                +usuario+"' and Password like '"+password+"'",null,null,null,null);
+
+        return mcursor;
     }
 
 }
