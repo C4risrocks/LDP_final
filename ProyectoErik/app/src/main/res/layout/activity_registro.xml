@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.christianmorenomarin.proyectoerik.Registro"
+    android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Registro de usuario"
+        android:textSize="30sp"
+        android:gravity="center"/>
+
+    <EditText
+        android:id="@+id/Edit_nombres"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombres"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/Edit_apellidos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Apellidos"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/Edit_direccion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Dirección"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/Edit_telefono"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Telefono"
+        android:inputType="phone"/>
+
+
+    <EditText
+        android:id="@+id/Edit_usuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre de Usuario"
+        android:inputType="text"/>
+
+    <EditText
+        android:id="@+id/Edit_contrasena"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contraseña"
+        android:inputType="text"/>
+
+    <Button
+        android:id="@+id/Btn_registrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrar"
+        android:layout_gravity="center"/>
+
+</LinearLayout>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.christianmorenomarin.proyectoerik.MainActivity"
+    android:baselineAligned="false"
+    android:orientation="vertical">
+    <ImageView
+        android:id="@+id/tv_usuario"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/usuario"
+        android:layout_gravity="center"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Nombre de Usuario"
+        android:inputType="text"/>
+    <EditText
+        android:id="@+id/tv_contrasena"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Contraseña"
+        android:inputType="textPassword"/>
+    <Button
+        android:id="@+id/btn_entrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="entrar"
+        android:layout_gravity="center"/>
+    <TextView
+        android:id="@+id/tv_registrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Registrar"
+        android:layout_gravity="center"
+        android:textSize="20sp"/>
+
+
+
+</LinearLayout>
