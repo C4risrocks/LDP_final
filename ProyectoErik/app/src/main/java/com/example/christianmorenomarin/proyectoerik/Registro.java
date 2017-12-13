@@ -29,24 +29,41 @@ public class Registro extends AppCompatActivity {
         editTextNomUsuario = (EditText) findViewById(R.id.Edit_usuario);
         editTextPass = (EditText) findViewById(R.id.Edit_contrasena);
 
+
+
         btn_registrar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                helper.abrirDB();
-                helper.insertarRegistro(String.valueOf(editTextNombres.getText()),
-                        String.valueOf(editTextApellidos.getText()),
-                        String.valueOf(editTextDireccion.getText()),
-                        String.valueOf(editTextTelefono.getText()),
-                        String.valueOf(editTextNomUsuario.getText()),
-                        String.valueOf(editTextPass.getText()));
-                helper.cerrarDB();
+                if (editTextNombres.getText().toString().matches("") |
+                        editTextApellidos.getText().toString().matches("") |
+                        editTextDireccion.getText().toString().matches("") |
+                        editTextTelefono.getText().toString().matches("") |
+                        editTextNomUsuario.getText().toString().matches("") |
+                        editTextPass.getText().toString().matches("")){
 
-                Toast.makeText(getApplicationContext(), "Registro en base de datos exitoso",
-                        Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "Llena todos los campos",
+                            Toast.LENGTH_LONG).show();
 
-                Intent intentRegistro = new Intent(Registro.this, MainActivity.class);
-                Registro.this.startActivity(intentRegistro);
+                }else{
+
+                    helper.abrirDB();
+                    helper.insertarRegistro(String.valueOf(editTextNombres.getText()),
+                            String.valueOf(editTextApellidos.getText()),
+                            String.valueOf(editTextDireccion.getText()),
+                            String.valueOf(editTextTelefono.getText()),
+                            String.valueOf(editTextNomUsuario.getText()),
+                            String.valueOf(editTextPass.getText()));
+                    helper.cerrarDB();
+
+                    Toast.makeText(getApplicationContext(), "Registro en base de datos exitoso",
+                            Toast.LENGTH_LONG).show();
+
+                    Intent intentRegistro = new Intent(Registro.this, MainActivity.class);
+                    Registro.this.startActivity(intentRegistro);
+
+
+                }
 
             }
 

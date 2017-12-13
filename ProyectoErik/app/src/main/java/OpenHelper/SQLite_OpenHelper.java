@@ -51,14 +51,15 @@ public class SQLite_OpenHelper extends SQLiteOpenHelper{
 
     public void insertarRegistro(String nombres, String apellidos, String direccion, String telefono, String nom_usuario, String password ){
 
-        ContentValues valores = new ContentValues();
-        valores.put("Nombres", nombres);
-        valores.put("Apellidos",apellidos);
-        valores.put("Direccion",direccion);
-        valores.put("Telefono",telefono);
-        valores.put("Nombre_Usuario",nom_usuario);
-        valores.put("Password", password);
-        this.getWritableDatabase().insert("usuarios", null, valores);
+            ContentValues valores = new ContentValues();
+            valores.put("Nombres", nombres);
+            valores.put("Apellidos", apellidos);
+            valores.put("Direccion", direccion);
+            valores.put("Telefono", telefono);
+            valores.put("Nombre_Usuario", nom_usuario);
+            valores.put("Password", password);
+            this.getWritableDatabase().insert("usuarios", null, valores);
+
     }
 
     //Metodo para validar usuario
