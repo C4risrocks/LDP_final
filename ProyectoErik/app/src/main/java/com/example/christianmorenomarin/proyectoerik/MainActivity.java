@@ -17,6 +17,7 @@ import OpenHelper.SQLite_OpenHelper;
 public class MainActivity extends AppCompatActivity {
 
     TextView tv_registrar;
+    TextView admin_in;
     Button btn_entrar;
     SQLite_OpenHelper helper = new SQLite_OpenHelper(this, "BDusuarios", null, 1);
 
@@ -68,6 +69,17 @@ public class MainActivity extends AppCompatActivity {
 
                 Intent intentReg = new Intent(MainActivity.this, Registro.class);
                 MainActivity.this.startActivity(intentReg);
+
+            }
+        });
+        admin_in = (TextView) findViewById(R.id.admin_in);
+
+        admin_in.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intentpres = new Intent(MainActivity.this, prestamo.class);
+                MainActivity.this.startActivity(intentpres);
 
             }
         });

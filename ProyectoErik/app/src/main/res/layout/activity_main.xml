@@ -6,7 +6,8 @@
     android:layout_height="match_parent"
     tools:context="com.example.christianmorenomarin.proyectoerik.MainActivity"
     android:baselineAligned="false"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:weightSum="1">
     <ImageView
         android:id="@+id/tv_usuario"
         android:layout_width="wrap_content"
@@ -25,12 +26,14 @@
         android:layout_height="wrap_content"
         android:hint="Contraseña"
         android:inputType="textPassword"/>
+
     <Button
         android:id="@+id/btn_EntrarM"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="entrar"
         android:layout_gravity="center"/>
+
     <TextView
         android:id="@+id/tv_registrar"
         android:layout_width="wrap_content"
@@ -39,6 +42,12 @@
         android:layout_gravity="center"
         android:textSize="20sp"/>
 
+    <TextView
+        android:id="@+id/admin_in"
+        android:layout_width="190dp"
+        android:layout_height="wrap_content"
+        android:text="admin"
+        android:textSize="20sp" />
 
 
 </LinearLayout>

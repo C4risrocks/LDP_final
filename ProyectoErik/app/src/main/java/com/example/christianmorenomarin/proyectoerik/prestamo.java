@@ -1,107 +1,73 @@
 package com.example.christianmorenomarin.proyectoerik;
 
+import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
-import java.util.List;
-import android.content.Context;
 import android.view.View;
-import android.view.inputmethod.InputMethodManager;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemSelectedListener;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
-public class prestamo extends Activity implements OnItemSelectedListener{
-    Spinner spinner;
-    Button btnAdd;
-    EditText inputLabel;
+import OpenHelper.DBLibros;
 
+public class prestamo extends AppCompatActivity {
+
+    Button btn_reglib;
+    EditText editTextNombre,editTextTipo,editTextAutor, editTextEditorial, editTextAño, editTextStock;
+
+    DBLibros helper = new DBLibros(this, "DBLibros", null, 1);
     @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_prestamo);
 
-        spinner = (Spinner) findViewById(R.id.spinner);
-        btnAdd = (Button) findViewById(R.id.btn_add);
-        inputLabel = (EditText) findViewById(R.id.input_label);
+        btn_reglib = (Button) findViewById(R.id.btn_reglib);
+        editTextNombre = (EditText) findViewById(R.id.Edit_nombre);
+        editTextTipo = (EditText) findViewById(R.id.Edit_tipo);
+        editTextAutor = (EditText) findViewById(R.id.Edit_autor);
+        editTextEditorial = (EditText) findViewById(R.id.Edit_editorial);
+        editTextAño = (EditText) findViewById(R.id.Edit_anio);
+        editTextStock = (EditText) findViewById(R.id.Edit_stock);
 
-        spinner.setOnItemSelectedListener(this);
 
-        // Loading spinner data from database
-        loadSpinnerData();
 
-        btnAdd.setOnClickListener(new View.OnClickListener() {
-
+        btn_reglib.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View arg0) {
-                String label = inputLabel.getText().toString();
+            public void onClick(View v) {
 
-                if (label.trim().length() > 0) {
-                    DBLibro db = new DBLibro(getApplicationContext());
-                    db.insertLabel(label);
+                if (editTextNombre.getText().toString().matches("") |
+                        editTextTipo.getText().toString().matches("") |
+                        editTextAutor.getText().toString().matches("") |
+                        editTextEditorial.getText().toString().matches("") |
+                        editTextAño.getText().toString().matches("") |
+                        editTextStock.getText().toString().matches("")){
 
-                    // making input filed text to blank
-                    inputLabel.setText("");
+                    Toast.makeText(getApplicationContext(), "Llena todos los campos",
+                            Toast.LENGTH_LONG).show();
 
-                    // Hiding the keyboard
-                    InputMethodManager imm = (InputMethodManager)
-                            getSystemService(Context.INPUT_METHOD_SERVICE);
-                    imm.hideSoftInputFromWindow(inputLabel.getWindowToken(), 0);
+                }else{
 
-                    // loading spinner with newly added data
-                    loadSpinnerData();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Please enter label name",
-                            Toast.LENGTH_SHORT).show();
+                    helper.abrirDB();
+                    helper.insertarRegistro(String.valueOf(editTextNombre.getText()),
+                            String.valueOf(editTextTipo.getText()),
+                            String.valueOf(editTextAutor.getText()),
+                            String.valueOf(editTextEditorial.getText()),
+                            String.valueOf(editTextAño.getText()),
+                            String.valueOf(editTextStock.getText()));
+                    helper.cerrarDB();
+
+                    Toast.makeText(getApplicationContext(), "Registro en base de datos exitoso",
+                            Toast.LENGTH_LONG).show();
+
+                    Intent intentprestamo = new Intent(prestamo.this, MainActivity.class);
+                    prestamo.this.startActivity(intentprestamo);
+
+
                 }
 
             }
+
+
         });
     }
-
-    /**
-     * Function to load the spinner data from SQLite database
-     * */
-    private void loadSpinnerData() {
-        DBLibro db = new DBLibro(getApplicationContext());
-        List<String> labels = db.getAllLabels();
-
-        // Creating adapter for spinner
-        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item, labels);
-
-        // Drop down layout style - list view with radio button
-        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-        // attaching data adapter to spinner
-        spinner.setAdapter(dataAdapter);
-    }
-
-    @Override
-    public void onItemSelected(AdapterView<?> parent, View view, int position,
-                               long id) {
-        // On selecting a spinner item
-        String label = parent.getItemAtPosition(position).toString();
-
-        // Showing selected spinner item
-        Toast.makeText(parent.getContext(), "You selected: " + label,
-                Toast.LENGTH_LONG).show();
-
-    }
-
-    @Override
-    public void onNothingSelected(AdapterView<?> arg0) {
-
-
-    }
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.activity_prestamo, menu);
-        return true;
-    }
-
 }
